@@ -1,4 +1,4 @@
-milage
+Mileage
 ======
 
-Simple client-side mileage tracker web app
+A simple client-side mileage tracker web app
