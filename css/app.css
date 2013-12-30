@@ -9,3 +9,11 @@ h1 {
 .field-row.top {
 	margin-top: 0;
 }
+
+.fillup-table {
+	width: 100%;
+}
+
+.fillup-table th {
+	text-align: left;
+}
