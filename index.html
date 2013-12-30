@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Mileage</title>
+	<link rel="stylesheet" href="css/fatUI.css">
+	<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+	<form class="grid fillup-form">
+		<h1 class="grid-u-1">Log your gas fillups</h1>
+		<label class="field-row grid-u-1-2 gutter top">
+			Date
+			<input class="grid-u-1 date" type="date" placeholder="yyyy-mm-dd">
+		</label>
+		<label class="field-row grid-u-1-2 top">
+			Dollars spent
+			<span class="unit">$</span>
+			<input class="grid-u-1" type="number" min="0" step=".01" size="6" maxlength="7" placeholder="0.00" required>
+		</label>
+		<label class="field-row grid-u-1-2 gutter">
+			Gallons purchased
+			<input class="grid-u-1" type="number" min="0" step=".001" size="7" maxlength="8" placeholder="0.000" required>
+		</label>
+		<label class="field-row grid-u-1-2">
+			Odometer reading
+			<input class="grid-u-1" type="number" min="0" step=".001" size="7" maxlength="8" placeholder="E.g. 65536" required>
+		</label>
+		<div class="field-row grid-u-1">
+			<button class="grid-u-1" type="submit">Add</button>
+		</div>
+	</form>
+
+	<!-- JS -->
+	<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+body {
+	font-family: sans-serif;
+}
+
+h1 {
+	font-weight: normal;
+}
+
+.field-row.top {
+	margin-top: 0;
+}
