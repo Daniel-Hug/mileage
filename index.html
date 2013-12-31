@@ -4,7 +4,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Mileage</title>
-	<link rel="stylesheet" href="css/FatUI.css">
+	
+	<!-- Fat UI CSS -->
+	<link rel="stylesheet" href="http://daniel-hug.github.io/FatUI/FatUI.css">
+
+	<!-- App CSS -->
 	<link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -37,9 +41,12 @@
 	<table class="fillup-table">
 		<thead>
 			<th>Days</th>
-			<th>dollars</th>
+			<th>Dollars</th>
 			<th>Gallons</th>
 			<th>Miles</th>
+
+			<th title="miles per gallon">MPG</th>
+			<th>$/Mi</th>
 		</thead>
 		<tbody></tbody>
 	</table>
@@ -50,6 +57,8 @@
 		<td>{{dollars}}</td>
 		<td>{{gallons}}</td>
 		<td title="{{odometer}}">{{miles}}</td>
+		<td>{{MPG}}</td>
+		<td>{{dollarsPerMile}}</td>
 	</script>
 
 	<!-- JS -->

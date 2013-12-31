@@ -102,11 +102,15 @@ var getPrettyData = (function() {
 	return function (fillupData) {
 		var prettyData = fillupData;
 		if (last) {
-			prettyData.days = dayDiff(last.date, prettyData.date);
-			prettyData.miles = prettyData.odometer - last.odometer;
+			prettyData.days = dayDiff(last.date, fillupData.date);
+			prettyData.miles = fillupData.odometer - last.odometer;
+			prettyData.MPG = (prettyData.miles / fillupData.gallons).toFixed(2);
+			prettyData.dollarsPerMile = '$' + (fillupData.dollars / prettyData.miles).toFixed(2);
 		} else {
-			prettyData.days = 'N/A';
-			prettyData.miles = 'N/A';
+			prettyData.days =
+			prettyData.miles =
+			prettyData.MPG = 
+			prettyData.dollarsPerMile = 'N/A';
 		}
 		prettyData.dollars = '$' + prettyData.dollars;
 		last = fillupData;
