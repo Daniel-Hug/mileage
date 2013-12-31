@@ -18,7 +18,7 @@
 		<label class="field-row grid-u-1-2 top">
 			Dollars spent
 			<span class="unit">$</span>
-			<input class="grid-u-1" name="cost" type="number" min="0" step=".01" size="6" maxlength="7" placeholder="0.00" required>
+			<input class="grid-u-1" name="dollars" type="number" min="0" step=".01" size="6" maxlength="7" placeholder="0.00" required>
 		</label>
 		<label class="field-row grid-u-1-2 gutter">
 			Gallons purchased
@@ -36,20 +36,20 @@
 	<!-- fillup table -->
 	<table class="fillup-table">
 		<thead>
-			<th>Date</th>
-			<th>Cost</th>
+			<th>Days</th>
+			<th>dollars</th>
 			<th>Gallons</th>
-			<th>Odometer</th>
+			<th>Miles</th>
 		</thead>
 		<tbody></tbody>
 	</table>
 
 	<!-- fillup table row template -->
 	<script type="tmp" id="fillup">
-		<td>{{date}}</td>
-		<td>{{cost}}</td>
+		<td title="{{date}}">{{days}}</td>
+		<td>{{dollars}}</td>
 		<td>{{gallons}}</td>
-		<td>{{odometer}}</td>
+		<td title="{{odometer}}">{{miles}}</td>
 	</script>
 
 	<!-- JS -->
