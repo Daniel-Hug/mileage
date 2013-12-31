@@ -5,8 +5,8 @@ function each(arr, fn, scope) {
 	}
 }
 function map(arr, fn, scope) {
-	var newArr = [];
-	for (var i = 0, l = arr.length; i < l; i++) {
+	var l = arr.length, newArr = [];
+	for (var i = 0; i < l; i++) {
 		newArr[i] = fn.call(scope, arr[i], i, arr);
 	}
 	return newArr;
@@ -49,33 +49,81 @@ var tmp = {};
 (function(open, close) {
 	each(qsa('script[type=tmp]'), function(el) {
 		var src = el.innerHTML;
-		tmp[el.id] = function(data) {
-			var result = src,
+		tmp[el.id] = function(data, elName) {
+			var newSrc = src,
 				key;
 			for (key in data) {
-				result = result.split(open + key + close).join(data[key]);
+				newSrc = newSrc.split(open + key + close).join(data[key]);
 			}
-			return result;
+			if (elName) {
+				var el = document.createElement(elName);
+				el.innerHTML = newSrc;
+				return el;
+			}
+			return newSrc;
 		};
 	});
 })('{{', '}}');
 
 
-// Render fillups to table:
-function renderFillup(fillupData) {
-		var tr = document.createElement('tr');
-		tr.innerHTML = tmp.fillup(fillupData);
-		return tr;
+function prependAInB(newChild, parent) {
+	parent.insertBefore(newChild, parent.firstChild);
 }
 
+
+// Loop through arr of data objects,
+// render each data object as an element with data inserted using the renderer,
+// append each element to a documentFragment, and return the documentFragment:
+function renderMultiple(arr, renderer) {
+	var renderedEls = map(arr, renderer);
+	var docFrag = document.createDocumentFragment();
+	each(renderedEls, function(renderedEl) {
+		prependAInB(renderedEl, docFrag);
+	});
+	return docFrag;
+}
+
+function absRound(number) {
+	return Math[number < 0 ? 'ceil' : 'floor'](number);
+}
+
+function parseDashDate(str) {
+	return new Date(str.split('-').join('/'))
+}
+
+function dayDiff(first, second) {
+	first = parseDashDate(first);
+	second = parseDashDate(second);
+    return absRound( (second - first) / (1000*60*60*24) );
+}
+
+var getPrettyData = (function() {
+	var last;
+	return function (fillupData) {
+		var prettyData = fillupData;
+		if (last) {
+			prettyData['days'] = dayDiff(last.date, prettyData.date);
+			prettyData['miles'] = prettyData.odometer - last.odometer;
+		} else {
+			prettyData['days'] = 'N/A';
+			prettyData['miles'] = 'N/A';
+		}
+		last = fillupData;
+		return prettyData;
+	};
+})();
+
+
+// Stick fillup data in a tr:
+function renderFillup(fillupData) {
+	return tmp.fillup(getPrettyData(fillupData), 'tr');
+}
+
+
+// Get fillups from localStorage and add to table:
 var fillups = storage.get('mileage_fillups') || [];
-var fillupRows = map(fillups, renderFillup);
-var fillupRowsDocFrag = document.createDocumentFragment();
-each(fillupRows, function(fillupRow) {
-	fillupRowsDocFrag.appendChild(fillupRow);
-});
 var fillupTableBody = qs('.fillup-table tbody');
-fillupTableBody.appendChild(fillupRowsDocFrag);
+fillupTableBody.appendChild(renderMultiple(fillups, renderFillup));
 
 
 // Handle new fillup entries:
@@ -83,7 +131,7 @@ function handleFillup(event) {
 	event.preventDefault();
 	var formData = {
 		date: this.date.value,
-		cost: this.cost.value,
+		dollars: this.dollars.value,
 		gallons: this.gallons.value,
 		odometer: this.odometer.value
 	};
@@ -91,7 +139,7 @@ function handleFillup(event) {
 	storage.set('mileage_fillups', fillups);
 
 	// Render to table:
-	fillupTableBody.appendChild(renderFillup(formData));
+	prependAInB(renderFillup(formData), fillupTableBody);
 }
 
 var fillupForm = qs('.fillup-form');
