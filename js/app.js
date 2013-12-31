@@ -102,12 +102,13 @@ var getPrettyData = (function() {
 	return function (fillupData) {
 		var prettyData = fillupData;
 		if (last) {
-			prettyData['days'] = dayDiff(last.date, prettyData.date);
-			prettyData['miles'] = prettyData.odometer - last.odometer;
+			prettyData.days = dayDiff(last.date, prettyData.date);
+			prettyData.miles = prettyData.odometer - last.odometer;
 		} else {
-			prettyData['days'] = 'N/A';
-			prettyData['miles'] = 'N/A';
+			prettyData.days = 'N/A';
+			prettyData.miles = 'N/A';
 		}
+		prettyData.dollars = '$' + prettyData.dollars;
 		last = fillupData;
 		return prettyData;
 	};

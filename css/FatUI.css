@@ -1,7 +1,7 @@
 /*
-	Fat UI
-	Demo: http://daniel-hug.github.io/FatUI/
-	Src:  https://github.com/Daniel-Hug/FatUI
+  Fat UI
+  Demo: http://daniel-hug.github.io/FatUI/
+  Src:  https://github.com/Daniel-Hug/FatUI
 */
 /* Everything but checkboxes and radio inputs */
 [type=text],
@@ -141,8 +141,8 @@ textarea {
   resize: vertical;
 }
 /* 
-	Labels
-	Example markup: <label><span class=unit>$</span><input type=number></label>
+  Labels
+  Example markup: <label><span class=unit>$</span><input type=number></label>
 */
 label {
   display: inline-block;
@@ -168,16 +168,19 @@ label .unit.negative + input {
   display: block;
   margin-top: 1.2em;
 }
+.field-row-top {
+  display: block;
+}
 .stacked-label {
   display: block;
   margin-bottom: 0.3125em;
 }
 /*!
-	An adapted version of YUI's Pure grids:
-		Pure v0.1.0
-		Copyright 2013 Yahoo! Inc. All rights reserved.
-		Licensed under the BSD License.
-		https://github.com/yui/pure/blob/master/LICENSE.md
+  An adapted version of YUI's Pure grids:
+    Pure v0.1.0
+    Copyright 2013 Yahoo! Inc. All rights reserved.
+    Licensed under the BSD License.
+    https://github.com/yui/pure/blob/master/LICENSE.md
 */
 * {
   -webkit-box-sizing: border-box;
