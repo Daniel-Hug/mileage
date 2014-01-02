@@ -8,9 +8,22 @@ h1 {
 
 .fillup-table {
 	width: 100%;
+	border-collapse: collapse;
 	margin-top: 1.5em;
+}
+
+.fillup-table tbody tr {
+	border-top: 1px solid #ccc;
+}
+
+.fillup-table td,
+.fillup-table th {
+	padding: 8px;
+	white-space: nowrap;
 }
 
 .fillup-table th {
 	text-align: left;
+	font-weight: normal;
+	font-size: 1.1em;
 }

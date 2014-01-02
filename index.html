@@ -40,20 +40,22 @@
 	<!-- fillup table -->
 	<table class="fillup-table">
 		<thead>
-			<th>Days</th>
-			<th>Dollars</th>
-			<th>Gallons</th>
-			<th>Miles</th>
+			<tr>
+				<th>Date</th>
+				<th>$$$</th>
+				<th>Gal</th>
+				<th>Trip (Mi)</th>
 
-			<th title="miles per gallon">MPG</th>
-			<th>$/Mi</th>
+				<th title="miles per gallon">MPG</th>
+				<th>$/Mi</th>
+			</tr>
 		</thead>
 		<tbody></tbody>
 	</table>
 
 	<!-- fillup table row template -->
 	<script type="tmp" id="fillup">
-		<td title="{{date}}">{{days}}</td>
+		<td>{{date}}</td>
 		<td>{{dollars}}</td>
 		<td>{{gallons}}</td>
 		<td title="{{odometer}}">{{miles}}</td>
