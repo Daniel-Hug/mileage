@@ -83,24 +83,39 @@ function renderMultiple(arr, renderer) {
 	return docFrag;
 }
 
+function clone(obj) {
+	return JSON.parse(JSON.stringify(obj));
+}
+
 function absRound(number) {
 	return Math[number < 0 ? 'ceil' : 'floor'](number);
 }
 
+// get a Date object from an input[type=date] value:
 function parseDashDate(str) {
 	return new Date(str.split('-').join('/'))
 }
 
+// Difference between two timestamps in days:
 function dayDiff(first, second) {
-	first = parseDashDate(first);
-	second = parseDashDate(second);
     return absRound( (second - first) / (1000*60*60*24) );
+}
+
+// Convert timestamp into a date string looking like this: "Wed, Jun 5, 2013":
+function formatDate(date) {
+	var parts = new Date(date).toDateString().split(' '); // ["Thu", "Jan", "01", "1970"]
+	parts.shift(); // ["Jan", "01", "1970"]
+	parts[1] = +parts[1]; // ["Jan", 1, "1970"]
+	var isCurrentYear = parts[2] == new Date().getFullYear();
+	if (isCurrentYear) parts.pop(); // ["Jan", 1]
+	else parts[1] += ', '; // ["Jan", "1, ", "1970"]
+	return parts.join(' ');
 }
 
 var getPrettyData = (function() {
 	var last;
 	return function (fillupData) {
-		var prettyData = fillupData;
+		var prettyData = clone(fillupData);
 		if (last) {
 			prettyData.days = dayDiff(last.date, fillupData.date);
 			prettyData.miles = fillupData.odometer - last.odometer;
@@ -112,7 +127,8 @@ var getPrettyData = (function() {
 			prettyData.MPG = 
 			prettyData.dollarsPerMile = 'N/A';
 		}
-		prettyData.dollars = '$' + prettyData.dollars;
+		prettyData.date = formatDate(fillupData.date);
+		prettyData.dollars = '$' + fillupData.dollars;
 		last = fillupData;
 		return prettyData;
 	};
@@ -135,7 +151,7 @@ fillupTableBody.appendChild(renderMultiple(fillups, renderFillup));
 function handleFillup(event) {
 	event.preventDefault();
 	var formData = {
-		date: this.date.value,
+		date: parseDashDate(this.date.value).getTime(),
 		dollars: this.dollars.value,
 		gallons: this.gallons.value,
 		odometer: this.odometer.value
