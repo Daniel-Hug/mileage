@@ -83,6 +83,10 @@ function renderMultiple(arr, renderer) {
 	return docFrag;
 }
 
+function clone(obj) {
+	return JSON.parse(JSON.stringify(obj));
+}
+
 function absRound(number) {
 	return Math[number < 0 ? 'ceil' : 'floor'](number);
 }
@@ -111,7 +115,7 @@ function formatDate(date) {
 var getPrettyData = (function() {
 	var last;
 	return function (fillupData) {
-		var prettyData = fillupData;
+		var prettyData = clone(fillupData);
 		if (last) {
 			prettyData.days = dayDiff(last.date, fillupData.date);
 			prettyData.miles = fillupData.odometer - last.odometer;
