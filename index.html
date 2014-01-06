@@ -4,7 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Mileage</title>
-	
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<!-- App Icons -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="shortcut icon" sizes="196x196" href="app-icon-196.png">
+	<link rel="apple-touch-icon" href="apple-touch-icon-precomposed.png">
+
 	<!-- Fat UI CSS -->
 	<link rel="stylesheet" href="http://daniel-hug.github.io/FatUI/FatUI.css">
 
@@ -17,23 +24,23 @@
 		<h1 class="grid-u-1">Log your gas fillups</h1>
 		<label class="field-row-top grid-u-1-2 gutter">
 			Date
-			<input class="grid-u-1" name="date" type="date" placeholder="yyyy-mm-dd">
+			<input type="date" class="grid-u-1" name="date" placeholder="yyyy-mm-dd">
 		</label>
 		<label class="field-row-top grid-u-1-2">
 			Dollars spent
 			<span class="unit">$</span>
-			<input class="grid-u-1" name="dollars" type="number" min="0" step=".01" size="6" maxlength="7" placeholder="0.00" required>
+			<input type="number" class="grid-u-1" name="dollars" min="0" step=".01" maxlength="7" placeholder="0.00" required>
 		</label>
 		<label class="field-row grid-u-1-2 gutter">
 			Gallons purchased
-			<input class="grid-u-1" name="gallons" type="number" min="0" step=".001" size="7" maxlength="8" placeholder="0.000" required>
+			<input type="number" class="grid-u-1" name="gallons" min="0" maxlength="6" placeholder="0.000" required>
 		</label>
 		<label class="field-row grid-u-1-2">
 			Odometer reading
-			<input class="grid-u-1" name="odometer" type="number" min="0" step=".001" size="7" maxlength="8" placeholder="E.g. 65536" required>
+			<input type="number" class="grid-u-1" name="odometer" min="0" maxlength="7" placeholder="e.g. 65536" required>
 		</label>
 		<div class="field-row grid-u-1">
-			<button class="grid-u-1" type="submit">Add</button>
+			<button class="grid-u-1">Add</button>
 		</div>
 	</form>
 
