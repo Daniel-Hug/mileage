@@ -1,7 +1,7 @@
 /*
-  Fat UI
-  Demo: http://daniel-hug.github.io/FatUI/
-  Src:  https://github.com/Daniel-Hug/FatUI
+	Fat UI
+	Demo: http://daniel-hug.github.io/FatUI/
+	Src:  https://github.com/Daniel-Hug/FatUI
 */
 /* Everything but checkboxes and radio inputs */
 [type=text],
@@ -140,9 +140,31 @@ button:active {
 textarea {
   resize: vertical;
 }
+/* Helper classes */
+.field-row {
+  display: block;
+  margin-top: 1.2em;
+}
+.field-row-top {
+  display: block;
+}
+.wrap {
+  position: relative;
+}
+.full-width {
+  width: 100%;
+}
 /* 
-  Labels
-  Example markup: <label><span class=unit>$</span><input type=number></label>
+	Labels
+
+	Example markup:
+	<label class="field-row">
+		Price
+		<div class="wrap full-width">
+			<span class="unit">$</span>
+			<input type="number" class="full-width" name="dollars" min="0" step=".01" maxlength="7" placeholder="0.00" required>
+		</div>
+	</label>
 */
 label {
   display: inline-block;
@@ -154,9 +176,7 @@ label .unit {
   white-space: nowrap;
   padding-left: .3em;
   position: absolute;
-  margin-top: 1.2em;
-  /* line-height */
-
+  top: 0;
 }
 label .unit + input {
   padding-left: .8em;
@@ -164,23 +184,12 @@ label .unit + input {
 label .unit.negative + input {
   padding-left: 1.1em;
 }
-.field-row {
-  display: block;
-  margin-top: 1.2em;
-}
-.field-row-top {
-  display: block;
-}
-.stacked-label {
-  display: block;
-  margin-bottom: 0.3125em;
-}
 /*!
-  An adapted version of YUI's Pure grids:
-    Pure v0.1.0
-    Copyright 2013 Yahoo! Inc. All rights reserved.
-    Licensed under the BSD License.
-    https://github.com/yui/pure/blob/master/LICENSE.md
+	An adapted version of YUI's Pure grids:
+		Pure v0.1.0
+		Copyright 2013 Yahoo! Inc. All rights reserved.
+		Licensed under the BSD License.
+		https://github.com/yui/pure/blob/master/LICENSE.md
 */
 * {
   -webkit-box-sizing: border-box;
@@ -190,16 +199,12 @@ label .unit.negative + input {
 .grid {
   letter-spacing: -0.31em;
   /* Webkit: collapse white-space between units */
-
   *letter-spacing: normal;
   /* reset IE < 8 */
-
   *word-spacing: -0.43em;
   /* IE < 8: collapse white-space between units */
-
   text-rendering: optimizespeed;
   /* Webkit: fixes text-rendering: optimizeLegibility */
-
 }
 /* Opera as of 12 on Windows needs word-spacing.
    The ".opera-only" selector is used to prevent actual prefocus styling
@@ -240,7 +245,6 @@ label .unit.negative + input {
   zoom: 1;
   *display: inline;
   /* IE < 8: fake inline-block */
-
   letter-spacing: normal;
   word-spacing: normal;
   vertical-align: top;

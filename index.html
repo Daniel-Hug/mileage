@@ -2,8 +2,9 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Mileage</title>
+	<meta name="viewport" content="width=device-width">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="mobile-web-app-capable" content="yes">
 
@@ -12,10 +13,8 @@
 	<link rel="shortcut icon" sizes="196x196" href="app-icon-196.png">
 	<link rel="apple-touch-icon" href="apple-touch-icon-precomposed.png">
 
-	<!-- Fat UI CSS -->
+	<!-- CSS -->
 	<link rel="stylesheet" href="http://daniel-hug.github.io/FatUI/FatUI.css">
-
-	<!-- App CSS -->
 	<link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -28,8 +27,10 @@
 		</label>
 		<label class="field-row-top grid-u-1-2">
 			Dollars spent
-			<span class="unit">$</span>
-			<input type="number" class="grid-u-1" name="dollars" min="0" step=".01" maxlength="7" placeholder="0.00" required>
+			<div class="wrap full-width">
+				<span class="unit">$</span>
+				<input type="number" class="full-width" name="dollars" min="0" step=".01" maxlength="7" placeholder="0.00" required>
+			</div>
 		</label>
 		<label class="field-row grid-u-1-2 gutter">
 			Gallons purchased
@@ -45,7 +46,7 @@
 	</form>
 
 	<!-- fillup table -->
-	<table class="fillup-table">
+	<table class="fillup-table full-width">
 		<thead>
 			<tr>
 				<th>Date</th>
