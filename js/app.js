@@ -93,7 +93,7 @@ function absRound(number) {
 
 // get a Date object from an input[type=date] value:
 function parseDashDate(str) {
-	return new Date(str.split('-').join('/'))
+	return new Date(str.split('-').join('/'));
 }
 
 // Difference between two timestamps in days:
@@ -136,14 +136,17 @@ var getPrettyData = (function() {
 
 
 // Stick fillup data in a tr:
+var fillupTable = qs('.fillup-table');
+var firstFillupRender = true;
 function renderFillup(fillupData) {
+	if (firstFillupRender) firstFillupRender = fillupTable.hidden = false;
 	return tmp.fillup(getPrettyData(fillupData), 'tr');
 }
 
 
 // Get fillups from localStorage and add to table:
 var fillups = storage.get('mileage_fillups') || [];
-var fillupTableBody = qs('.fillup-table tbody');
+var fillupTableBody = qs('tbody', fillupTable);
 fillupTableBody.appendChild(renderMultiple(fillups, renderFillup));
 
 
@@ -159,7 +162,7 @@ function handleFillup(event) {
 	fillups.push(formData);
 	storage.set('mileage_fillups', fillups);
 
-	// Render to table:
+	// Add to table:
 	prependAInB(renderFillup(formData), fillupTableBody);
 }
 
