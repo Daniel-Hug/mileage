@@ -80,8 +80,9 @@ var tmp = {};
 		var src = el.innerHTML;
 		tmp[el.id] = function(data, elName) {
 			var newSrc = src.replace(regExp, function(match, key) {
-				if ((match.length - key.length) % 2) return match;
-				return key.length === 3 ? data[key] : escapeHTML(data[key]);
+				var numCurlyBraces = match.length - key.length;
+				return numCurlyBraces % 2 ? match :
+					(numCurlyBraces === 6 ? data[key] : escapeHTML(data[key]));
 			});
 			if (elName) {
 				var el = document.createElement(elName);
