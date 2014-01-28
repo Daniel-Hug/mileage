@@ -29,16 +29,16 @@
 			Dollars spent
 			<div class="wrap full-width">
 				<span class="unit">$</span>
-				<input type="number" class="full-width" name="dollars" min="0" step=".01" maxlength="7" placeholder="0.00" required>
+				<input type="number" class="full-width" name="dollars" min="0" step=".01" max="9999" placeholder="0.00" required>
 			</div>
 		</label>
 		<label class="field-row grid-u-1-2 gutter">
 			Gallons purchased
-			<input type="number" class="grid-u-1" name="gallons" min="0" maxlength="6" placeholder="0.000" required>
+			<input type="number" class="grid-u-1" name="gallons" min="0" max="999" placeholder="0.000" required>
 		</label>
 		<label class="field-row grid-u-1-2">
 			Odometer reading
-			<input type="number" class="grid-u-1" name="odometer" min="0" maxlength="7" placeholder="e.g. 65536" required>
+			<input type="number" class="grid-u-1" name="odometer" min="0" max="9999999" placeholder="e.g. 65536" required>
 		</label>
 		<div class="field-row grid-u-1">
 			<button class="grid-u-1">Add</button>
